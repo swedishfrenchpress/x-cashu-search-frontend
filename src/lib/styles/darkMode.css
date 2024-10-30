@@ -1,0 +1,38 @@
+/* Common dark mode styles */
+:global(.dark) {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #a0aec0;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+:global(.dark) body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+:global(.dark) .card,
+:global(.dark) .container-box,
+:global(.dark) .form-container {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+:global(.dark) input,
+:global(.dark) textarea,
+:global(.dark) select {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+:global(.dark) button {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+:global(.dark) a {
+  color: #60a5fa;
+} 
