@@ -304,7 +304,7 @@
             <div class="spinner"></div>
           </div>
         {:else if search_results.length === 0}
-          <p class="text-center text-gray-600">
+          <p class="text-center text-gray-400">
             No results found. Try a different search query.
           </p>
         {:else}
@@ -486,28 +486,39 @@
   }
 
   .search-container {
-    max-width: 100%;
+    max-width: 60%;
     transition: all 0.3s ease;
-    margin-right: 300px; /* Increased from 200px */
   }
 
   .search-container.search-active {
-    max-width: calc(100% - 320px); /* Increased from 220px */
+    max-width: 60%;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
+    .search-container {
+      max-width: 50%; /* Reduce width on medium screens */
+    }
+
     .search-container.search-active {
-      max-width: calc(100% - 320px); /* Increased from 220px */
+      max-width: 50%;
+    }
+  }
+
+  @media (max-width: 982px) {
+    .search-container {
+      max-width: 45%; /* Further reduce width to prevent clipping */
+    }
+
+    .search-container.search-active {
+      max-width: 45%;
     }
   }
 
   @media (max-width: 768px) {
     .search-container {
       order: 2;
-      margin-right: 0;
       max-width: 100%;
       margin-top: 5rem;
-      width: 100%;
     }
 
     header {
@@ -711,5 +722,10 @@
 
   :global(.dark) .more-options-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Add dark mode styles */
+  :global(.dark) .search-button {
+    color: #A0AEC0; /* Update color for dark mode */
   }
 </style>

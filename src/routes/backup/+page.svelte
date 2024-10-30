@@ -54,7 +54,7 @@
         </div>
       </div>
   
-      <p class="text-xl text-gray-600 mb-6">
+      <p class="text-xl text-gray-300 mb-6">
         Save your secret recovery phrase in a secure place that only you control.
       </p>
   
