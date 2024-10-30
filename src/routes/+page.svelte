@@ -683,6 +683,11 @@
     );
   }
 
+  /* Add dark mode background image */
+  :global(.dark) .background-image {
+    background-image: url('/src/bgld.png');
+  }
+
   /* Ensure the wordmark maintains its position */
   .wordmark {
     position: relative;
