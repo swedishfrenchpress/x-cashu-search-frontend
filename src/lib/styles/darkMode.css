@@ -1,4 +1,13 @@
-/* Common dark mode styles */
+/* Define light mode variables as default */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a5568;
+  --border-color: #333;
+}
+
+/* Override with dark mode variables */
 :global(.dark) {
   --bg-primary: #1a1a1a;
   --bg-secondary: #2d2d2d;
@@ -7,6 +16,7 @@
   --border-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Rest of your dark mode styles */
 :global(.dark) body {
   background-color: var(--bg-primary);
   color: var(--text-primary);

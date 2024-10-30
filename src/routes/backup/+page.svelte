@@ -4,6 +4,8 @@
     import { copyToClipboard } from "@svelte-put/copy";
     import { showToast } from "$lib/stores/toast";
     import Toast from "../../components/Toast.svelte";
+    import { onMount } from 'svelte';
+    import { theme } from '$lib/stores/theme';
   
     // Sample words (these should come from your app's logic later)
     let words = [
@@ -20,9 +22,27 @@
       copyToClipboard(text);
       showToast("Recovery phrase copied to clipboard.");
     }
+  
+    onMount(() => {
+        // Get theme from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        // Update the theme store
+        theme.set(savedTheme);
+        // Apply dark mode class if needed
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    });
+
+    // Subscribe to theme changes
+    $: if ($theme === 'dark') {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
   </script>
   
-  <div class="min-h-screen flex flex-col text-gray-800 relative gradient-background">
+  <div class="min-h-screen flex flex-col relative">
     <main class="flex-grow flex flex-col justify-start items-center px-4 py-8">
       <div class="header-container">
         <button class="back-button" on:click={goBack}>×</button>
@@ -76,7 +96,7 @@
       background: none;
       border: none;
       font-size: 1.5rem;
-      color: #374151;
+      color: var(--text-primary, #374151);
       cursor: pointer;
       transition: color 0.3s ease;
       padding: 0;
@@ -85,7 +105,7 @@
     }
   
     .back-button:hover {
-      color: #1a1a1a;
+      color: var(--text-secondary, #1a1a1a);
     }
   
     .main-heading-container {
@@ -99,7 +119,7 @@
       z-index: 1;
       font-size: 3rem;
       font-weight: bold;
-      color: #1a1a1a;
+      color: var(--text-primary, #1a1a1a);
       display: inline-block;
     }
   
@@ -117,7 +137,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
       padding: 2rem;
-      background: #1a1a1a;
+      background-color: var(--bg-secondary);
       border-radius: 24px;
       margin-bottom: 2rem;
       width: 100%;
@@ -133,14 +153,14 @@
     }
   
     .word-number {
-      color: #666;
+      color: var(--text-secondary);
       font-size: 1.1rem;
       font-weight: 500;
       min-width: 1.5rem;
     }
   
     .word-text {
-      color: white;
+      color: var(--text-primary);
       font-size: 1.2rem;
       font-weight: 500;
     }
@@ -151,12 +171,12 @@
       left: 2.5rem;
       right: 0;
       height: 1px;
-      background: #333;
+      background: var(--border-color, #333);
     }
   
     .copy-button {
       background-color: transparent;
-      color: #4a5568;
+      color: var(--text-secondary);
       border: none;
       padding: 16px 32px;
       font-size: 16px;
@@ -168,7 +188,7 @@
     }
   
     .copy-button:hover {
-      color: #2d3748;
+      color: var(--text-primary);
     }
   
     .copy-button:focus {
@@ -202,5 +222,37 @@
       .main-heading {
         font-size: 2rem;
       }
+    }
+  
+    :global(.dark) main {
+        background-color: var(--bg-primary);
+    }
+
+    :global(.dark) .seed-container {
+        background-color: #2d2d2d !important;
+    }
+
+    :global(.dark) .word-number {
+        color: #a0aec0 !important;
+    }
+
+    :global(.dark) .word-text {
+        color: #ffffff !important;
+    }
+
+    :global(.dark) .main-heading {
+        color: #ffffff !important;
+    }
+
+    :global(.dark) .copy-button {
+        color: #a0aec0 !important;
+    }
+
+    :global(.dark) .copy-button:hover {
+        color: #ffffff !important;
+    }
+
+    :global(.dark) .back-button {
+        color: #ffffff !important;
     }
   </style>
