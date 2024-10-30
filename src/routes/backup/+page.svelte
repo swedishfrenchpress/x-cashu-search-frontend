@@ -137,7 +137,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
       padding: 2rem;
-      background-color: var(--bg-secondary);
+      background: #1a1a1a;
       border-radius: 24px;
       margin-bottom: 2rem;
       width: 100%;
@@ -153,14 +153,14 @@
     }
   
     .word-number {
-      color: var(--text-secondary);
+      color: #666;
       font-size: 1.1rem;
       font-weight: 500;
       min-width: 1.5rem;
     }
   
     .word-text {
-      color: var(--text-primary);
+      color: white;
       font-size: 1.2rem;
       font-weight: 500;
     }
